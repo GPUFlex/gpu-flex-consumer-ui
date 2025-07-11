@@ -3,7 +3,7 @@ import { atom } from "jotai"
 export interface User {
   id: string
   email: string
-  name: string
+  username: string
 }
 
 export interface Task {

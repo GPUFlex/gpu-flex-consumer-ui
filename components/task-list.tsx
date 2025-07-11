@@ -75,7 +75,7 @@ export function TaskList() {
           </div>
         ) : (
           <div className="space-y-4">
-            {tasks.map((task) => (
+            {tasks.filter(task => task).map((task) => (
               <div key={task.id} className="border rounded-lg p-4 hover:bg-gray-50 transition-colors">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
@@ -90,14 +90,16 @@ export function TaskList() {
                         <span>Model: {task.model}</span>
                       </div>
 
-                      <a
-                        href={`http://localhost:8000/api/tasks/${task.id}/model`}
-                        className="text-sm text-blue-600 hover:underline ml-4"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Download ZIP
-                      </a>
+                      {task.trainedModel && (
+                        <a
+                          href={`http://localhost:8000/api/tasks/${task.id}/model`}
+                          className="text-sm text-blue-600 hover:underline ml-4"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Download trained model
+                        </a>
+                      )}
 
                       {task.fileName && (
                         <div className="flex items-center space-x-2">

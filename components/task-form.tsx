@@ -28,6 +28,8 @@ export function TaskForm() {
   const [success, setSuccess] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
 
+  console.log(user);
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0]
     if (selectedFile) {

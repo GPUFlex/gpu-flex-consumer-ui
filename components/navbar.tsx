@@ -38,10 +38,10 @@ export function Navbar() {
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-3">
                 <Avatar className="h-8 w-8">
-                  <AvatarFallback className="bg-blue-100 text-blue-700">{getInitials(user.name)}</AvatarFallback>
+                  <AvatarFallback className="bg-blue-100 text-blue-700">{getInitials(user.username)}</AvatarFallback>
                 </Avatar>
                 <div className="hidden sm:block">
-                  <p className="text-sm font-medium text-gray-900">{user.name}</p>
+                  <p className="text-sm font-medium text-gray-900">{user.username}</p>
                   <p className="text-xs text-gray-500">{user.email}</p>
                 </div>
               </div>
