@@ -14,6 +14,7 @@ import { Upload, Loader2 } from "lucide-react"
 import axios from 'axios'
 
 const MODELS = ["ResNet", "GPT-2", "Custom-CNN", "BERT", "YOLOv8"]
+const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL
 
 export function TaskForm() {
   const [user] = useAtom(userAtom)
@@ -74,7 +75,7 @@ export function TaskForm() {
       if (modelFile) formData.append("modelFile", modelFile)
       //if (trainFuncFile) formData.append("trainFuncFile", trainFuncFile)
 
-      const response = await axios.post("http://localhost:8000/api/tasks", formData)
+      const response = await axios.post(`${backendUrl}/api/tasks`, formData)
       const data = response.data
 
       setTasks((prev) => [data.task, ...prev])

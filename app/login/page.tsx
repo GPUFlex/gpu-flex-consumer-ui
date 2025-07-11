@@ -22,6 +22,7 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [isRegistering, setIsRegistering] = useState(false)
   const router = useRouter()
+  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -29,7 +30,9 @@ export default function LoginPage() {
     setIsLoading(true)
 
     try {
-      const endpoint = isRegistering ? "http://localhost:8000/api/auth/register" : "http://localhost:8000/api/auth/login"
+      const endpoint = isRegistering
+      ? `${backendUrl}/api/auth/register`
+      : `${backendUrl}/api/auth/login`
       const body = isRegistering
         ? { email, password, username, walletAddress }
         : { email, password }

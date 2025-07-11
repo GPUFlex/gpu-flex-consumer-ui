@@ -15,6 +15,7 @@ const STATUS_COLORS = {
   COMPLETED: "bg-green-100 text-green-800 border-green-200",
   FAILED: "bg-red-100 text-red-800 border-red-200",
 }
+const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL
 
 export function TaskList() {
   const [user] = useAtom(userAtom)
@@ -27,7 +28,7 @@ export function TaskList() {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/tasks`,
+        `${backendUrl}/api/tasks`,
         { params: { consumerId: user.id } },   // nicer Axios way
       );
       console.log(response.data);
@@ -92,10 +93,9 @@ export function TaskList() {
 
                       {task.trainedModel && (
                         <a
-                          href={`http://localhost:8000/api/tasks/${task.id}/model`}
+                          href={`${backendUrl}/api/tasks/${task.id}/model`}
+                          download={`${task.name}.pth`}
                           className="text-sm text-blue-600 hover:underline ml-4"
-                          target="_blank"
-                          rel="noopener noreferrer"
                         >
                           Download trained model
                         </a>
